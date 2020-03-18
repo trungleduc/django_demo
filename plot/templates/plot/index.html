@@ -11,14 +11,16 @@
   <title>Hello, world!</title>
   </head>
   <body>
-    <h1 style="text-align: center">Demo plot</h1>
+    <h1 style="text-align: center">Covid plot</h1>
     <div class="container-fluid" style="height: 75vh;width: 90vw;margin: 0 auto;" id="plot_area">
       
     </div>
 
     <div class="container-fluid" style="text-align: center">
-      <input id="data_size_input" type="number"  aria-label="Data size" step="1" style="width: 10vw; margin-right: 2.5vw;" placeholder="Data size">
-      <button id="plot_btn" type="button" class="btn btn-primary" style="width: 5vw;">Plot trace</button>
+      <select name="country" id="country_select">
+      </select>
+
+      <button id="plot_btn" type="button" class="btn btn-primary" style="width: auto;">Compute</button>
     </div>
 
     <!-- Optional JavaScript -->
