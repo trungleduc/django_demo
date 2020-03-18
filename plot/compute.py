@@ -38,16 +38,17 @@ def get_data(country):
       break
   if (start_index < 0):
     return [], [], []
-    
+
   data = country_data[start_index:]
   x_array = range(len(data))
-
-  fitter = modeling.fitting.LevMarLSQFitter()
-  model = modeling.models.Gaussian1D()  
-  fitted_model = fitter(model, x_array, data )
-  new_x = range(len(data) + 50)
-  predict_data = fitted_model(new_x)
-
+  try:
+    fitter = modeling.fitting.LevMarLSQFitter()
+    model = modeling.models.Gaussian1D()  
+    fitted_model = fitter(model, x_array, data )
+    new_x = range(len(data) + 50)
+    predict_data = fitted_model(new_x)
+  except:
+    predict_data = []
   start_date = datetime.datetime.strptime("22/01/2020", "%d/%m/%Y") + datetime.timedelta(days=start_index)
   date_array = []
 

@@ -22,28 +22,38 @@ $(document).ready(function () {
       url: "/ajax/plot_data",
       data: data,
       success: function (data) {
-        console.log(data);
+        $("#title_id").text("Covid plot - " + country)
 
         data_array = data["data"];
         data_x_array = Array.from(Array(data_array.length).keys());
         predict_array = data["predict_data"]
 
         label_array = data["date_array"]
-
-        var plot_data = [{
+        data_label = []
+        for (let index = 0; index < data_array.length; index++) {
+          data_label.push(label_array[index])
+        }
+        let trace1 = {}
+        if (data_array.length > 0) {
+          trace1 = {
+            x: data_label,
             y: data_array,
             mode: "markers",
             type: "scatter",
             name: "Confirmed",
-          },
-          {
+          }
+        } 
+        let trace2 = {}  
+        if (predict_array.length > 0) {
+          trace2 =          {
             x: label_array,
             y: predict_array,
             mode: "lines",
             type: "scatter",
             name: "Predicted",
           }
-        ];
+        }         
+        var plot_data = [trace1,trace2];
 
         Plotly.newPlot("plot_area", plot_data);
       }
