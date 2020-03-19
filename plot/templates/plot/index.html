@@ -7,19 +7,35 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+
 
   <title>Hello, world!</title>
   </head>
   <body>
     <h1 style="text-align: center" id="title_id">Covid plot</h1>
-    <div class="container-fluid" style="height: 75vh;width: 90vw;margin: 0 auto;" id="plot_area">
+    <div class="container-fluid" style="height: 80vh;width: 90vw;margin: 0 auto;" id="plot_area">
       
     </div>
 
-    <div class="container-fluid" style="text-align: center">
-      <select name="country" id="country_select">
-      </select>
 
+    <div class="form-inline my-auto" style="text-align: center; display: block!important;" >
+      <select name="country" id="country_select" style="margin-right: 10px; width: 200px;" class="form-control" >
+      </select>
+      <select name="data" id="data_select" class="form-control" style="margin-right: 10px;">
+        <option value="all">All</option>
+        <option value="confirmed">Confirmed</option>
+        <option value="dead">Dead</option>
+        <option value="recovered">Recovered</option>
+      </select>
+      <select name="prediction" id="predict_select" class="form-control" style="margin-right: 10px;">
+        <option value=0>- Prediction</option>
+        <option value=1>+ Prediction</option>
+      </select>  
+      <select name="plot_type" id="plot_select" class="form-control" style="margin-right: 10px;">
+        <option value=0>Scatter</option>
+        <option value=1>Bar</option>
+      </select>     
       <button id="plot_btn" type="button" class="btn btn-primary" style="width: auto;">Compute</button>
     </div>
 
@@ -32,6 +48,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
     {% load staticfiles %}
     <script src="{% static 'js/plot.js' %}"></script>
   </body>
