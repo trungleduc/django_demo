@@ -11,9 +11,9 @@ from astropy import modeling
     #       list_country.append(row[1])
     # print(sorted(list_country))
 
-URL_CONFIRMED = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
+URL_CONFIRMED = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
 
-URL_DEAD = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"
+URL_DEAD = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
 
 URL_RECOVERED = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
 
@@ -28,6 +28,8 @@ def get_data(country, data_select, predict = True):
     if "-" in country:
       country_name = country.split("-")[0]
       state_name = country.split("-")[1]
+      if state_name == country_name:
+        state_name = None
     else:
       country_name = country
       state_name = None
@@ -35,14 +37,16 @@ def get_data(country, data_select, predict = True):
     select_country = data.loc[data["Country/Region"] == country_name].to_numpy()
     country_data = []
     if state_name == None:
-      country_data = select_country[0][4:]
+      for row in select_country:
+        if str(row[0]) == "nan":
+          country_data = row[4:]
     else:
       for row in select_country:
-        if row[0] == state_name:
+        if str(row[0]) == state_name:
           country_data = row[4:]
     start_index = -1
     for index in range(len(country_data)):
-      if country_data[index] > 10:
+      if country_data[index] > 20:
         start_index = index
         break
     if (start_index < 0):

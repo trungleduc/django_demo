@@ -100,7 +100,7 @@ $(document).ready(function() {
     "Eswatini",
     "Ethiopia",
     "Finland",
-    "France-France",
+    "France",
     "France-French Guiana",
     "France-French Polynesia",
     "France-Guadeloupe",

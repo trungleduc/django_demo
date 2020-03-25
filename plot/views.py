@@ -17,6 +17,7 @@ class Index(FormView):
 
 
 def plot_data(request):
+  print(request)
   if request.is_ajax() :
     if request.method == 'GET':    
       country = request.GET.get('country', "France")
