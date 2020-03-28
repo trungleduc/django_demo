@@ -550,7 +550,7 @@ $(document).ready(function() {
           Plotly.newPlot("plot_area", plot_data, { showlegend: true });
         } else {
           let plot_data = [];
-          let keyList = ["confirmed", "dead", "recovered"];
+          let keyList = ["confirmed", "dead"];
           keyList.forEach(key => {
             let data_array = data[key]["data"];
             let label_array = data[key]["date_array"];

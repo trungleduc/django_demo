@@ -28,7 +28,7 @@ def plot_data(request):
         ret[data_select] = {"data": list(data), "predict_data": list(predict_data), "date_array": list(date_array)}
       else:
         ret = {}
-        for select in ["confirmed", "dead", "recovered"]:
+        for select in ["confirmed", "dead"]:
           data, predict_data, date_array = get_data(country, select, False)
           data_length = len(data)
           ret[select] = {"data": list(data), "predict_data": predict_data, "date_array": list(date_array)}
