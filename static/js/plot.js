@@ -496,12 +496,13 @@ $(document).ready(function() {
       country: country,
       data_select: data_select
     };
+    
     //delete on server
     $.ajax({
       type: "GET",
       url: "/ajax/plot_data",
       data: data,
-      success: function(data) {
+      success: function (data) {        
         const predict_select = $("#predict_select").val();
         const plotType = $("#plot_select").val();
         if (Object.keys(data).length == 1) {
@@ -522,14 +523,14 @@ $(document).ready(function() {
                 y: data_array,
                 mode: "markers",
                 type: "scatter",
-                name: key
+                name: key =="confirmed" ?"active": key
               };
             } else {
               trace1 = {
                 x: data_label,
                 y: data_array,
                 type: "bar",
-                name: key
+                name: key =="confirmed" ?"active": key
               };
             }
           }
@@ -568,7 +569,7 @@ $(document).ready(function() {
                   y: data_array,
                   mode: "markers",
                   type: "scatter",
-                  name: key
+                  name: key =="confirmed" ?"active": key
                 };
               } else {
                 if (key != "confirmed") {
@@ -576,14 +577,14 @@ $(document).ready(function() {
                     x: data_label,
                     y: data_array,
                     type: "bar",
-                    name: key
+                    name: key =="confirmed" ?"active": key
                   };
                 } else {
                   trace1 = {
                     x: data_label,
                     y: data_array,
                     type: "bar",
-                    name: key
+                    name: key =="confirmed" ?"active": key
                   };
                 }
               }
